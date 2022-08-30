@@ -14,6 +14,8 @@
 		36C839C028BE84170007C17D /* AppetizerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C839BF28BE84170007C17D /* AppetizerListView.swift */; };
 		36C839C228BE84220007C17D /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C839C128BE84220007C17D /* AccountView.swift */; };
 		36C839C428BE842C0007C17D /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C839C328BE842C0007C17D /* OrderView.swift */; };
+		36C839C628BE94700007C17D /* Appetizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C839C528BE94700007C17D /* Appetizer.swift */; };
+		36C839C828BE9DD30007C17D /* AppetizerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C839C728BE9DD30007C17D /* AppetizerListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		36C839BF28BE84170007C17D /* AppetizerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppetizerListView.swift; sourceTree = "<group>"; };
 		36C839C128BE84220007C17D /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		36C839C328BE842C0007C17D /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		36C839C528BE94700007C17D /* Appetizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appetizer.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		36C839C728BE9DD30007C17D /* AppetizerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppetizerListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 				36C839BF28BE84170007C17D /* AppetizerListView.swift */,
 				36C839C128BE84220007C17D /* AccountView.swift */,
 				36C839C328BE842C0007C17D /* OrderView.swift */,
+				36C839C528BE94700007C17D /* Appetizer.swift */,
+				36C839C728BE9DD30007C17D /* AppetizerListCell.swift */,
 			);
 			path = Appetizer;
 			sourceTree = "<group>";
@@ -146,6 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36C839C628BE94700007C17D /* Appetizer.swift in Sources */,
+				36C839C828BE9DD30007C17D /* AppetizerListCell.swift in Sources */,
 				36C839C228BE84220007C17D /* AccountView.swift in Sources */,
 				36C839B428BE833E0007C17D /* AppetizerTabView.swift in Sources */,
 				36C839B228BE833E0007C17D /* AppetizerApp.swift in Sources */,
