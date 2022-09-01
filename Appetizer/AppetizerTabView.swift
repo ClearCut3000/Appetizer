@@ -28,7 +28,7 @@ struct AppetizerTabView: View {
           Text("Order")
         }
     }
-    .accentColor(/*@START_MENU_TOKEN@*/Color("brandPrimary")/*@END_MENU_TOKEN@*/)
+    .accentColor(.brandPrimary)
   }
 }
 
