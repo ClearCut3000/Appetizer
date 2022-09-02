@@ -15,8 +15,7 @@ struct AppetizerListCell: View {
   //MARK: - View Body
     var body: some View {
       HStack {
-        Image("testImage")
-          .resizable()
+        AppetizersRemoteImage(URLString: appetizer.imageURL)
           .scaledToFit()
           .frame(width: 120, height: 90)
           .cornerRadius(8)
