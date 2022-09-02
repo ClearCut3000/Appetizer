@@ -11,12 +11,12 @@ struct AppetizerDetailView: View {
 
   //MARK: - View Properties
   let appetizer: Appetizer
+  @Binding var isShowingDetail: Bool
 
   //MARK: - View Body
   var body: some View {
     VStack {
-      Image("food-placeholder")
-        .resizable()
+      AppetizersRemoteImage(URLString: appetizer.imageURL)
         .scaledToFit()
         .frame(width: 300, height: 225)
 
@@ -85,7 +85,7 @@ struct AppetizerDetailView: View {
     .shadow(radius: 40)
     .overlay(
       Button {
-
+        isShowingDetail = false
       } label: {
         ZStack {
           Circle()
@@ -104,6 +104,6 @@ struct AppetizerDetailView: View {
 
 struct AppetizerDetailView_Previews: PreviewProvider {
   static var previews: some View {
-    AppetizerDetailView(appetizer: MockData.sampleAppetizer)
+    AppetizerDetailView(appetizer: MockData.sampleAppetizer, isShowingDetail: .constant(true))
   }
 }
