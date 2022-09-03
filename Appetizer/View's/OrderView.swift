@@ -13,8 +13,9 @@ struct OrderView: View {
   @State private var order = MockData.mockOrder
 
   //MARK: - View Body
-    var body: some View {
-      NavigationView {
+  var body: some View {
+    NavigationView {
+      ZStack {
         VStack {
           List {
             ForEach(order) { appetizer in
@@ -31,9 +32,13 @@ struct OrderView: View {
           }
           .padding(.bottom, 25)
         }
-          .navigationTitle("Order")
+        if order.isEmpty {
+          EmptyStateView(imageName: "list", message: "You have no items in order. \nTry to add some appetizers!")
+        }
       }
+      .navigationTitle("Order")
     }
+  }
 
   //MARK: - View Methods
   func deleteItems(at offsets: IndexSet) {
@@ -42,7 +47,7 @@ struct OrderView: View {
 }
 
 struct OrderView_Previews: PreviewProvider {
-    static var previews: some View {
-        OrderView()
-    }
+  static var previews: some View {
+    OrderView()
+  }
 }
