@@ -11,6 +11,11 @@ struct AccountView: View {
 
   //MARK: - View Poperties
   @StateObject var viewModel = AccounViewModel()
+  @FocusState private var focusedTextField: FormTextField?
+
+  enum FormTextField {
+    case firstName, lastName, email
+  }
 
   //MARK: - View Body
   var body: some View {
@@ -18,8 +23,17 @@ struct AccountView: View {
       Form {
         Section(header: Text("Personal Info")) {
           TextField("First Name...", text: $viewModel.user.firstName)
+            .focused($focusedTextField, equals: .firstName)
+            .onSubmit { focusedTextField = .lastName }
+            .submitLabel(.next)
           TextField("Last Name...", text: $viewModel.user.lastName)
+            .focused($focusedTextField, equals: .lastName)
+            .onSubmit { focusedTextField = .email }
+            .submitLabel(.next)
           TextField("E-mail...", text: $viewModel.user.eMail)
+            .focused($focusedTextField, equals: .email)
+            .onSubmit { focusedTextField = nil }
+            .submitLabel(.continue)
             .keyboardType(.emailAddress)
             .textInputAutocapitalization(.none)
             .disableAutocorrection(true)
@@ -40,6 +54,11 @@ struct AccountView: View {
         .toggleStyle(SwitchToggleStyle(tint: .brandPrimary))
       }
       .navigationTitle("Account")
+      .toolbar {
+        ToolbarItemGroup(placement: .keyboard) {
+          Button("Dismiss") { focusedTextField = nil }
+        }
+      }
     }
     .onAppear{
       viewModel.retriveUser()
