@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AppetizerListViewViewModel: ObservableObject {
+@MainActor final class AppetizerListViewViewModel: ObservableObject {
 
   //MARK: - Properties
   @Published var appetizers: [Appetizer] = []
@@ -17,6 +17,34 @@ final class AppetizerListViewViewModel: ObservableObject {
   @Published var selectedAppetizer: Appetizer?
 
   //MARK: - Methods
+  func getAppetizers() {
+    isLoading = true
+    Task {
+      do {
+        appetizers = try await NetworkManager.shared.getAppetizers()
+        isLoading = false
+      } catch {
+        if let apError = error as? APError {
+          switch apError {
+          case .invalidURL:
+            alertItem = AlertContext.invalidURL
+          case .invalidResponse:
+            alertItem = AlertContext.invalidResponse
+          case .invalidData:
+            alertItem = AlertContext.invalidData
+          case .unableToComplete:
+            alertItem = AlertContext.unableToComplete
+          }
+        } else {
+          alertItem = AlertContext.invalidResponse
+        }
+        isLoading = false
+      }
+    }
+  }
+  
+  #warning("Old stuff")
+  /*
   func getAppetizers() {
     isLoading = true
     NetworkManager.shared.getAppetizers { [self] result in
@@ -40,4 +68,5 @@ final class AppetizerListViewViewModel: ObservableObject {
       }
     }
   }
+  */
 }

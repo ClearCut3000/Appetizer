@@ -20,33 +20,49 @@ final class NetworkManager {
   private init() {}
 
   //MARK: - Methods
-  func getAppetizers(completion: @escaping (Result<[Appetizer], APError> ) -> Void) {
+
+  #warning("Old stuff")
+  /*
+   func getAppetizers(completion: @escaping (Result<[Appetizer], APError> ) -> Void) {
+   guard let url = URL(string: appetizerURL) else {
+   completion(.failure(APError.invalidURL))
+   return
+   }
+   let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+   guard error == nil else {
+   completion(.failure(APError.unableToComplete))
+   return
+   }
+   guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+   completion(.failure(APError.invalidResponse))
+   return
+   }
+   guard let data = data else {
+   completion(.failure(APError.invalidData))
+   return
+   }
+   do {
+   let decoder = JSONDecoder()
+   let decodedResponse = try decoder.decode(AppetizerRequest.self, from: data)
+   completion(.success(decodedResponse.request))
+   } catch {
+   completion(.failure(APError.invalidData))
+   }
+   }
+   task.resume()
+   }
+   */
+
+  func getAppetizers() async throws -> [Appetizer] {
     guard let url = URL(string: appetizerURL) else {
-      completion(.failure(APError.invalidURL))
-      return
+      throw APError.invalidURL
     }
-    let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
-      guard error == nil else {
-        completion(.failure(APError.unableToComplete))
-        return
-      }
-      guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-        completion(.failure(APError.invalidResponse))
-        return
-      }
-      guard let data = data else {
-        completion(.failure(APError.invalidData))
-        return
-      }
-      do {
-        let decoder = JSONDecoder()
-        let decodedResponse = try decoder.decode(AppetizerRequest.self, from: data)
-        completion(.success(decodedResponse.request))
-      } catch {
-        completion(.failure(APError.invalidData))
-      }
+    let (data, response) = try await URLSession.shared.data(from: url)
+    do {
+      return try JSONDecoder().decode(AppetizerRequest.self, from: data).request
+    } catch {
+      throw APError.invalidData
     }
-    task.resume()
   }
 
   func downloadImage(from URLString: String, completion: @escaping (UIImage?) -> Void) {
