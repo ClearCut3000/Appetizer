@@ -51,7 +51,7 @@ final class NetworkManager {
    }
    task.resume()
    }
-   */
+   */ 
 
   func getAppetizers() async throws -> [Appetizer] {
     guard let url = URL(string: appetizerURL) else {

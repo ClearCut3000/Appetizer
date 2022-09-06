@@ -21,8 +21,9 @@ struct AppetizerListCell: View {
           .frame(width: 120, height: 90)
           .cornerRadius(8)
 
-        #warning("AsyncImage - no caching code")
-/*        AsyncImage(url: URL(string: appetizer.imageURL)) { image in
+        #warning("New stuff: AsyncImage - no caching code")
+/*
+        AsyncImage(url: URL(string: appetizer.imageURL)) { image in
           image
             .resizable()
             .scaledToFit()
@@ -36,6 +37,7 @@ struct AppetizerListCell: View {
             .cornerRadius(8)
         }
 */
+
         VStack(alignment: .leading) {
           Text(appetizer.name)
             .font(.title2)

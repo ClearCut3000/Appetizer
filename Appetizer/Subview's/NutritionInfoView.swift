@@ -11,7 +11,7 @@ struct NutritionInfoView: View {
 
   //MARK: - View Properties
   let title: String
-  let value: Int
+  let value: String
 
   //MARK: - View Body
     var body: some View {
@@ -20,7 +20,7 @@ struct NutritionInfoView: View {
           .bold()
           .font(.caption)
 
-        Text("\(value)")
+        Text(value)
           .foregroundColor(.secondary)
           .fontWeight(.semibold)
           .italic()
@@ -30,6 +30,6 @@ struct NutritionInfoView: View {
 
 struct NutritionInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        NutritionInfoView(title: "Some sample title", value: 99)
+        NutritionInfoView(title: "Some sample title", value: String(99))
     }
 }

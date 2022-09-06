@@ -39,6 +39,7 @@ struct AccountView: View {
             .disableAutocorrection(true)
           DatePicker("Birthdate",
                      selection: $viewModel.user.birthdate,
+                     in: Date().oneHundredTenYearsAgo...Date().eighteenYearAgo,
                      displayedComponents: .date)
           Button {
             viewModel.saveChanges()
